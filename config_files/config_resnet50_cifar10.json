@@ -1,15 +1,18 @@
 {
-    "name": "Mnist_LeNet",
+    "name": "Resnet50_Cifar10",
     "n_gpu": 1,
 
     "arch": {
-        "type": "MnistModel",
-        "args": {}
+        "type": "Resnet50Model",
+        "args": {
+        	"num_classes": 10,
+        	"layer_list": [3,4,6,3]
+        }
     },
     "data_loader": {
-        "type": "MnistDataLoader",
+        "type": "Cifar10DataLoader",
         "args":{
-            "data_dir": "data/",
+            "data_dir": "/mnt/disk_data/yaelf/datasets/cifar10/",
             "batch_size": 128,
             "shuffle": true,
             "validation_split": 0.1,
@@ -18,13 +21,13 @@
     },
     "optimizer": {
         "type": "Adam",
-        "args":{
+        "args": {
             "lr": 0.001,
-            "weight_decay": 0,
+            "weight_decay": 0.0001,
             "amsgrad": true
         }
     },
-    "loss": "nll_loss",
+    "loss": "cross_entropy",
     "metrics": [
         "accuracy", "top_k_acc"
     ],
@@ -38,12 +41,11 @@
     "trainer": {
         "epochs": 100,
 
-        "save_dir": "saved/",
-        "save_period": 1,
+        "save_dir": "/mnt/disk_data/yaelf/saved/",
+        "save_period": 10,
         "verbosity": 2,
         
         "monitor": "min val_loss",
-        "early_stop": 10,
 
         "tensorboard": false
     }

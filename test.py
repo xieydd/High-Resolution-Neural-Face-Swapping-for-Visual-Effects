@@ -14,7 +14,7 @@ def main(config):
     # setup data_loader instances
     data_loader = getattr(module_data, config['data_loader']['type'])(
         config['data_loader']['args']['data_dir'],
-        batch_size=512,
+        batch_size=config['data_loader']['args']['batch_size'], #512,
         shuffle=False,
         validation_split=0.0,
         training=False,

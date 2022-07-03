@@ -1,49 +1,51 @@
 {
-    "name": "Mnist_LeNet",
+    "name": "InceptionV3_ImageNet",
     "n_gpu": 1,
 
     "arch": {
-        "type": "MnistModel",
-        "args": {}
+        "type": "InceptionV3Model",
+        "args": {
+        	"num_classes": 1000
+        }
     },
     "data_loader": {
-        "type": "MnistDataLoader",
+        "type": "ImageNetDataLoader",
         "args":{
-            "data_dir": "data/",
-            "batch_size": 128,
+            "data_dir": "/mnt/disk_data/yaelf/datasets/imagenet/",
+            "batch_size": 32,
             "shuffle": true,
             "validation_split": 0.1,
             "num_workers": 2
         }
     },
     "optimizer": {
-        "type": "Adam",
+        "type": "RMSprop",
         "args":{
-            "lr": 0.001,
+            "lr": 0.045,
             "weight_decay": 0,
-            "amsgrad": true
+            "eps": 1
         }
     },
-    "loss": "nll_loss",
+    "loss": "cross_entropy",
     "metrics": [
         "accuracy", "top_k_acc"
     ],
     "lr_scheduler": {
         "type": "StepLR",
         "args": {
-            "step_size": 50,
-            "gamma": 0.1
+            "step_size": 2,
+            "gamma": 0.94
         }
     },
     "trainer": {
         "epochs": 100,
 
-        "save_dir": "saved/",
-        "save_period": 1,
+        "save_dir": "/mnt/disk_data/yaelf/saved/",
+        "save_period": 2,
         "verbosity": 2,
         
         "monitor": "min val_loss",
-        "early_stop": 10,
+        "early_stop": 100,
 
         "tensorboard": false
     }

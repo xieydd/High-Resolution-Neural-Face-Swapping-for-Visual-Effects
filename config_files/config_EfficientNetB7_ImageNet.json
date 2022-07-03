@@ -1,0 +1,57 @@
+{
+    "name": "EfficientNetB7_ImageNet",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "EfficientNetB7Model",
+        "args": {
+        "input_channels": 3,
+        "num_classes": 10,
+        "width_mult": 2,
+        "depth_mult": 3.1,
+        "dropout_rate": 0.5
+        }
+    },
+    "data_loader": {
+        "type": "ImageNetDataLoader",
+        "args":{
+            "data_dir": "/mnt/disk_data/yaelf/datasets/imagenet/",
+            "batch_size": 8,
+            "shuffle": true,
+            "validation_split": 0.1,
+            "num_workers": 2
+        }
+    },
+    "optimizer": {
+        "type": "RMSprop",
+        "args":{
+            "lr": 0.001,
+            "weight_decay": 0.00001,
+            "momentum": 0.9,
+            "eps": 1
+        }
+    },
+    "loss": "cross_entropy",
+    "metrics": [
+        "accuracy", "top_k_acc"
+    ],
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 100,
+            "gamma": 0.1
+        }
+    },
+    "trainer": {
+        "epochs": 100,
+
+        "save_dir": "/mnt/disk_data/yaelf/saved/",
+        "save_period": 5,
+        "verbosity": 2,
+        
+        "monitor": "min val_loss",
+        "early_stop": 100,
+
+        "tensorboard": false
+    }
+}
