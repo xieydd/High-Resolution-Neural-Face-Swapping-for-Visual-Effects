@@ -3,7 +3,7 @@
     "n_gpu": 1,
 
     "arch": {
-        "type": "Resnet50Model",
+        "type": "ResNet_ImageNet",
         "args": {
         	"num_classes": 1000,
         	"layer_list": [3,4,6,3]
@@ -13,7 +13,7 @@
         "type": "ImageNetDataLoader",
         "args":{
             "data_dir": "/mnt/disk_data/yaelf/datasets/imagenet/",
-            "batch_size": 16,
+            "batch_size": 32,
             "shuffle": true,
             "validation_split": 0.1,
             "num_workers": 2

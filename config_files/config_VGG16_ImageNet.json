@@ -11,11 +11,11 @@
     "data_loader": {
         "type": "ImageNetDataLoader",
         "args":{
-            "data_dir": "/mnt/disk_data/yaelf/datasets/imagenet/",
+            "data_dir": "/mnt/disk_data/yaelf/datasets/imagenet",
             "batch_size": 128,
             "shuffle": true,
             "validation_split": 0.1,
-            "num_workers": 2
+            "num_workers": 1
         }
     },
     "optimizer": {
@@ -40,7 +40,7 @@
         "epochs": 100,
 
         "save_dir": "/mnt/disk_data/yaelf/saved/",
-        "save_period": 5,
+        "save_period": 1,
         "verbosity": 2,
         
         "monitor": "min val_loss",

@@ -12,7 +12,7 @@
         "type": "Cifar10DataLoader",
         "args":{
             "data_dir": "/mnt/disk_data/yaelf/datasets/cifar10/",
-            "batch_size": 32,
+            "batch_size": 128,
             "shuffle": true,
             "validation_split": 0.1,
             "num_workers": 2

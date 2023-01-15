@@ -26,7 +26,7 @@
         "type": "RMSprop",
         "args":{
             "lr": 0.001,
-            "weight_decay": 0.00001,
+            "weight_decay": 0.0005,
             "momentum": 0.9,
             "eps": 1
         }
